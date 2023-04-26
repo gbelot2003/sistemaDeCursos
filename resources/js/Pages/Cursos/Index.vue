@@ -30,6 +30,7 @@ watch(search, value => {
             <div class="md:flex md:justify-between mb-2">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight py-3 text-center">Administración de Cursos
                 </h2>
+                <a class="leading-tight py-3 text-center">Nuevo Curso</a>
                 <input type="text" class="rounded w-full md:w-1/2" v-model="search" placeholder="Buscar...." />
             </div>
 
@@ -44,17 +45,24 @@ watch(search, value => {
                             <th class="p-3 text-left">Inicio</th>
                             <th class="p-3 text-left">Final</th>
                             <th class="p-3 text-left">Alumnos</th>
+                            <th class="p-3 text-left">Action</th>
                         </tr>
                     </thead>
                     <tbody class="flex-1 sm:flex-none">
                         <tr class="flex flex-col flex-nowrap sm:table-row mb-2 sm:mb-0" v-for="cursos in cursos.data"
                             :key="cursos.id">
-                            <td class="border-grey-light md:border hover:bg-gray-100 p-3">{{ cursos.id }}</td>
+                            <td class="border-grey-light md:border hover:bg-gray-100 p-4">{{ cursos.id }}</td>
                             <td class="border-grey-light md:border hover:bg-gray-100 p-3">{{ cursos.nombre }}</td>
                             <td class="border-grey-light md:border hover:bg-gray-100 p-3">{{ cursos.horario }}</td>
                             <td class="border-grey-light md:border hover:bg-gray-100 p-3">{{ cursos.inicio }}</td>
                             <td class="border-grey-light md:border hover:bg-gray-100 p-3">{{ cursos.final }}</td>
                             <td class="border-grey-light md:border hover:bg-gray-100 p-3">5</td>
+                            <td class="border-grey-light md:border hover:bg-gray-100 p-3">
+                                <Link :href="`cursos/${cursos.id}/edit`"
+                                    class="bg-blue-800 hover:bg-blue-400 px-3 py-2 rounded-lg text-white hover:underline">
+                                Edit
+                                </Link>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
