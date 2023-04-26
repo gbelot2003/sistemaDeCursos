@@ -18,7 +18,7 @@ class CursoService
     {
         $cursos = $this->cursoModel::query()
             ->when($request, function ($query, $search){
-                $query->where('name', 'LIKE', "%{$search}%");
+                $query->where('nombre', 'LIKE', "%{$search}%");
             })
             ->orderBy('id', 'DESC')
             ->paginate(10)

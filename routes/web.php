@@ -35,5 +35,5 @@ Route::middleware([
     })->name('dashboard');
 
     // Cursos Routes
-    Route::get('/cursos', [CursoController::class, 'index'])->name('curso.index');
+    Route::get('/cursos', [CursoController::class, 'index'])->name('cursos.index');
 });

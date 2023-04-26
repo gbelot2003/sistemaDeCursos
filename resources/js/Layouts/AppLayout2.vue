@@ -169,7 +169,8 @@ const logout = () => {
                 :class="showingNavigation ? '-translate-x-full' : ''">
                 <nav>
                     <MenuItem name="Dashboard" icon="mdi-home" href="/dashboard" :active="route().current('dashboard')" />
-            </nav>
+                    <MenuItem name="Cursos" icon="mdi-home" href="/cursos" :active="route().current('cursos.index')" />
+                </nav>
         </aside>
 
         <main class=" flex-1 p-10 text-base">
