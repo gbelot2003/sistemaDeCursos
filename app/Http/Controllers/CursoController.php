@@ -26,6 +26,11 @@ class CursoController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return Inertia::render('Cursos/Create');
+    }
+
     public function edit(Curso $curso)
     {
         return Inertia::render('Cursos/Edit', [

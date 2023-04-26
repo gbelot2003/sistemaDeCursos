@@ -53,4 +53,22 @@ class CursosTest extends TestCase
         $response->assertStatus(200);
     }
 
+        /** @test */
+        public function a_guest_user_can_not_see_cursos_create(): void
+        {
+            $response = $this->get("cursos/create");
+
+            $response->assertStatus(302)->assertRedirect();
+        }
+
+        /** @test */
+        function a_user_registered_can_get_cursos_create() : void
+        {
+            $user = User::factory()->create();
+
+            $response = $this->actingAs($user)->get("cursos/create");
+
+            $response->assertStatus(200);
+        }
+
 }

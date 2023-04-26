@@ -28,9 +28,7 @@ watch(search, value => {
 
         <div class="container">
             <div class="md:flex md:justify-between mb-2">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight py-3 text-center">Administración de Cursos
-                </h2>
-                <a class="leading-tight py-3 text-center">Nuevo Curso</a>
+                <Link href="cursos/create" class="leading-tight py-3 px-2 text-white rounded-full text-center bg-blue-950">Nuevo <span class="mdi mdi-plus-circle-outline"></span></Link>
                 <input type="text" class="rounded w-full md:w-1/2" v-model="search" placeholder="Buscar...." />
             </div>
 
