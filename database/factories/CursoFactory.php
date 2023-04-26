@@ -17,10 +17,10 @@ class CursoFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre' => $this->faker->words(2),
-            'horario' => $this->faker->time(),
-            'fecha_inicio' => $this->faker->date(),
-            'fecha_final' => $this->faker->date(),
+            'nombre' => $this->faker->word(),
+            'horario' => $this->faker->time,
+            'inicio' => $this->faker->date,
+            'final' => $this->faker->date,
         ];
     }
 }

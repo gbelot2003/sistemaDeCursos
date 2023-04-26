@@ -9,7 +9,7 @@ class Curso extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre', 'horario', 'fecha_inicio', 'fecha_final'];
+    protected $fillable = ['nombre', 'horario', 'inicio', 'final'];
 
 
 }
