@@ -36,4 +36,5 @@ Route::middleware([
 
     // Cursos Routes
     Route::get('/cursos', [CursoController::class, 'index'])->name('cursos.index');
+    Route::get('/cursos/{curso}/edit', [CursoController::class, 'edit'])->name('cursos.edit');
 });
