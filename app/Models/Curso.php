@@ -17,4 +17,6 @@ class Curso extends Model
         return $this->belongsToMany(Student::class);
     }
 
+
+
 }
