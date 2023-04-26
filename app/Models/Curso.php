@@ -11,5 +11,10 @@ class Curso extends Model
 
     protected $fillable = ['nombre', 'horario', 'inicio', 'final'];
 
+    // Relacion muchos a muchos con Cursos
+    public function students()
+    {
+        return $this->belongsToMany(Student::class);
+    }
 
 }
