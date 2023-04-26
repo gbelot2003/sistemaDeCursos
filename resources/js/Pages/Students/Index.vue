@@ -28,7 +28,7 @@ watch(search, value => {
 
         <div class="container">
             <div class="md:flex md:justify-between mb-2">
-                <Link href="cursos/create" class="leading-tight py-3 px-2 text-white rounded-full text-center bg-blue-950">Nuevo <span class="mdi mdi-plus-circle-outline"></span></Link>
+                <Link href="estudiantes/create" class="leading-tight py-3 px-2 text-white rounded-full text-center bg-blue-950">Nuevo <span class="mdi mdi-plus-circle-outline"></span></Link>
                 <input type="text" class="rounded w-full md:w-1/2" v-model="search" placeholder="Buscar...." />
             </div>
 
@@ -54,7 +54,7 @@ watch(search, value => {
                             <td class="border-grey-light md:border hover:bg-gray-100 p-3">{{ students.edad }}</td>
                             <td class="border-grey-light md:border hover:bg-gray-100 p-3">{{ students.email }}</td>
                             <td class="border-grey-light md:border hover:bg-gray-100 p-3">
-                                <Link :href="`cursos/${students.id}/edit`"
+                                <Link :href="`estudiantes/${students.id}/edit`"
                                     class="bg-blue-800 hover:bg-blue-400 px-3 py-2 rounded-lg text-white hover:underline">
                                 Edit
                                 </Link>
