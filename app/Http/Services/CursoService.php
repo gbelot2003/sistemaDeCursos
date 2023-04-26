@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Models\Curso;
+use Illuminate\Http\Request;
 
 class CursoService
 {
@@ -29,6 +30,12 @@ class CursoService
     public function Curso($request)
     {
         $curso = $this->cursoModel::findOrFail($request);
+        return $curso;
+    }
+
+    public function CursoCreate(Request $request)
+    {
+        $curso = $this->cursoModel::create($request->all());
         return $curso;
     }
 }

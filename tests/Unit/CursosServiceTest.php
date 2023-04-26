@@ -5,6 +5,7 @@ namespace Tests\Unit;
 //use PHPUnit\Framework\TestCase;
 use App\Http\Services\CursoService;
 use App\Models\Curso;
+use Illuminate\Http\Request;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -33,6 +34,11 @@ class CursosServiceTest extends TestCase
     /** @test */
     public function curso_function_get_curso_return_results(): void
     {
+
+        /**
+         * Comprobamos que un curso existente se puede
+         * localizar atravez de findOrFail en el servicio
+         */
         $curso = new Curso();
         $testcurso = $curso::factory()->create();
 
@@ -41,5 +47,27 @@ class CursosServiceTest extends TestCase
 
         $this->assertEquals($checkCurso->name, $testcurso->name);
         $this->assertIsObject($service);
+    }
+
+    /** @test */
+    public function curso_create_function_store_results(): void
+    {
+        $curso = new Curso();
+        $request = new Request();
+        $request->setMethod('POST');
+        $cursoModelo = $curso::factory()->make();
+
+        $request->request->add([
+            'nombre' => $cursoModelo->nombre,
+            'horario' => $cursoModelo->horario,
+            'inicio' => $cursoModelo->inicio,
+            'final' => $cursoModelo->final
+        ]);
+
+        $service = new CursoService($curso);
+        $test = $service->CursoCreate($request);
+
+        $this->assertEquals($test->name, $cursoModelo->name);
+
     }
 }
