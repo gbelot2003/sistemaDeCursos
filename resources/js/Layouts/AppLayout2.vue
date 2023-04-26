@@ -24,7 +24,7 @@ const logout = () => {
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
                 </svg>
-                <span class="text-2xl font-extrabold">TrackerDev</span>
+                <span class="text-2xl font-extrabold">Sistema de Cursos</span>
             </a>
 
             <div>
@@ -135,13 +135,6 @@ const logout = () => {
                                     Perfil
                                 </DropdownLink>
 
-                                <DropdownLink :href="route('users.index')">
-                                    Admin. de Usuarios
-                                </DropdownLink>
-
-                                <DropdownLink :href="route('roles.index')">
-                                    Admin. de Roles
-                                </DropdownLink>
 
                                 <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
                                     API Tokens
