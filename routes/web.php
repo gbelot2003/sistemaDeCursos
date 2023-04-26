@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StudentController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -38,4 +39,8 @@ Route::middleware([
     Route::get('/cursos', [CursoController::class, 'index'])->name('cursos.index');
     Route::get('/cursos/create', [CursoController::class, 'create'])->name('cursos.create');
     Route::get('/cursos/{curso}/edit', [CursoController::class, 'edit'])->name('cursos.edit');
+
+    // Estudiantes Routes
+    Route::get('/estudiantes', [StudentController::class, 'index'])->name('students.index');
+
 });

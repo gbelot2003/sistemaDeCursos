@@ -170,6 +170,7 @@ const logout = () => {
                 <nav>
                     <MenuItem name="Dashboard" icon="mdi-home" href="/dashboard" :active="route().current('dashboard')" />
                     <MenuItem name="Cursos" icon="mdi-account-box-multiple-outline" href="/cursos" :active="route().current('cursos.index')" />
+                    <MenuItem name="Estudiantes" icon="mdi-account-group" href="/estudiantes" :active="route().current('students.index')" />
                 </nav>
         </aside>
 
