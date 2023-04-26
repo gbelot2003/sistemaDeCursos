@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use App\Models\Student;
 use App\Http\Services\StudentService;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Http\Request as RequestData;
@@ -24,4 +25,18 @@ class StudentController extends Controller
             'filters' => Request::only(['search'])
         ]);
     }
+
+    public function create()
+    {
+        return Inertia::render('Students/Create');
+    }
+
+    public function edit(Student $student)
+    {
+        return Inertia::render('Students/Edit', [
+            'curso' => $this->service->Student($student->id)
+        ]);
+    }
+
+
 }
