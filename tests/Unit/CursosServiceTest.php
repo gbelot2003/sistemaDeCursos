@@ -103,7 +103,7 @@ class CursosServiceTest extends TestCase
         $service = new CursoService($curso);
 
         // Agregamos el payload con la información
-        $service->userUpdate($test->id, $request);
+        $service->CursoUpdate($test->id, $request);
 
         // Revisamos registro en base de datos
         $test2 = Curso::findOrFail($test->id);
