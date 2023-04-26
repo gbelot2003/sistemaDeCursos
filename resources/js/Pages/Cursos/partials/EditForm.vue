@@ -53,7 +53,7 @@ let form = useForm({
 
                         <div class="col-span-6 sm:col-span-4">
                             <label for="nombre">Fecha de Final</label>
-                            <VueDatePicker v-model="form.final"></VueDatePicker>
+                            <VueDatePicker v-model="form.final" :min-date="form.inicio"></VueDatePicker>
                         </div>
 
                     </div>
