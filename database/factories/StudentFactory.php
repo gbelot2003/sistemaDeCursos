@@ -17,7 +17,10 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nombre' => $this->faker->name(),
+            'apellido' => $this->faker->lastName(),
+            'edad' => rand(12, 25),
+            'email' => $this->faker->email()
         ];
     }
 }
