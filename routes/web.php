@@ -42,5 +42,7 @@ Route::middleware([
 
     // Estudiantes Routes
     Route::get('/estudiantes', [StudentController::class, 'index'])->name('students.index');
+    Route::get('/estudiantes/create', [StudentController::class, 'create'])->name('students.create');
+    Route::get('/estudiantes/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
 
 });
