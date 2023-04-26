@@ -38,4 +38,11 @@ class CursoService
         $curso = $this->cursoModel::create($request->all());
         return $curso;
     }
+
+    public function userUpdate($id, Request $request)
+    {
+        $curso = $this->cursoModel::findOrFail($id);
+        $curso->update($request->all());
+        return $curso;
+    }
 }

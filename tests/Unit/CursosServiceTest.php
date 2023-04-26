@@ -50,13 +50,20 @@ class CursosServiceTest extends TestCase
     }
 
     /** @test */
-    public function curso_create_function_store_results(): void
+    public function curso_create_store_results(): void
     {
+        // Instanciamos el modelo de curso
         $curso = new Curso();
+
+        // Creamos manualemente un request
+        // de tipo POST
         $request = new Request();
         $request->setMethod('POST');
+
+        // Generamos los datos de un curso
         $cursoModelo = $curso::factory()->make();
 
+        // Configuramos el request
         $request->request->add([
             'nombre' => $cursoModelo->nombre,
             'horario' => $cursoModelo->horario,
@@ -64,10 +71,45 @@ class CursosServiceTest extends TestCase
             'final' => $cursoModelo->final
         ]);
 
+        // Probamos que los datos son almacenados
+        /// y replicados por el servicio
         $service = new CursoService($curso);
         $test = $service->CursoCreate($request);
 
         $this->assertEquals($test->name, $cursoModelo->name);
+    }
 
+    /** @test */
+    public function curso_update_changes_data(): void
+    {
+         // Instanciamos el modelo de curso
+        $curso = new Curso();
+
+        // Creamos un curso en base de datos
+        $test = $curso::factory()->create();
+
+        $request = new Request();
+        $request->setMethod('PUT');
+
+        // Configuramos el request
+        $request->request->add([
+            'nombre' => 'Alberto Matamoros',
+            'horario' => $test->horario,
+            'inicio' => $test->inicio,
+            'final' => $test->final
+        ]);
+
+        // Instanciamos el servicio
+        $service = new CursoService($curso);
+
+        // Agregamos el payload con la información
+        $service->userUpdate($test->id, $request);
+
+        // Revisamos registro en base de datos
+        $test2 = Curso::findOrFail($test->id);
+
+        // Comparamos datos
+        $this->assertEquals($test2->nombre, 'Alberto Matamoros');
+        $this->assertIsObject($service);
     }
 }
