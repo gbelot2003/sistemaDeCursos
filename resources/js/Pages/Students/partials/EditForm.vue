@@ -6,16 +6,16 @@ import { useForm } from "@inertiajs/vue3";
 import { ref } from "vue";
 
 const props = defineProps({
-    curso: {
+    student: {
         type: Object
     }
 })
 
 let form = useForm({
-    nombre: props.curso.nombre,
-    horario: props.curso.horario,
-    inicio: props.curso.inicio,
-    final: props.curso.final
+    nombre: props.student.nombre,
+    apellido: props.student.apellido,
+    edad: props.student.edad,
+    email: props.student.email
 })
 
 </script>
@@ -42,18 +42,27 @@ let form = useForm({
                         </div>
 
                         <div class="col-span-6 sm:col-span-4">
-                            <label for="nombre">Horario</label>
-                            <VueDatePicker v-model="form.horario" time-picker></VueDatePicker>
+                            <label for="apellido">apellido</label>
+                            <input v-model="form.apellido" id="apellido"
+                                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
+                                :class="{ 'border-red-500': form.errors.apellido }" type="text">
+                            <div class="text-red-600" v-if="form.errors.apellido">{{ form.errors.apellido }}</div>
                         </div>
 
                         <div class="col-span-6 sm:col-span-4">
-                            <label for="nombre">Fecha de Inicio</label>
-                            <VueDatePicker v-model="form.inicio"></VueDatePicker>
+                            <label for="edad">edad</label>
+                            <input v-model="form.edad" id="edad"
+                                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
+                                :class="{ 'border-red-500': form.errors.edad }" type="number">
+                            <div class="text-red-600" v-if="form.errors.edad">{{ form.errors.edad }}</div>
                         </div>
 
                         <div class="col-span-6 sm:col-span-4">
-                            <label for="nombre">Fecha de Final</label>
-                            <VueDatePicker v-model="form.final" :min-date="form.inicio"></VueDatePicker>
+                            <label for="email">email</label>
+                            <input v-model="form.email" id="email"
+                                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
+                                :class="{ 'border-red-500': form.errors.email }" type="email">
+                            <div class="text-red-600" v-if="form.errors.email">{{ form.errors.email }}</div>
                         </div>
 
                     </div>

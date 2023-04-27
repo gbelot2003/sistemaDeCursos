@@ -34,7 +34,7 @@ class StudentController extends Controller
     public function edit(Student $student)
     {
         return Inertia::render('Students/Edit', [
-            'curso' => $this->service->Student($student->id)
+            'student' => $this->service->student($student->id)
         ]);
     }
 

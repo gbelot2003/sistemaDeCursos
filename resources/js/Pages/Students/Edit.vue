@@ -4,7 +4,7 @@ import { Head } from '@inertiajs/vue3';
 import Formvue from './partials/EditForm.vue'
 
 const props = defineProps({
-    curso: {
+    student: {
         type: Object
     }
 });
@@ -16,7 +16,7 @@ const props = defineProps({
     <AppLayout>
         <div class="container">
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <Formvue :curso="curso"></Formvue>
+                <Formvue :student="student"></Formvue>
             </div>
         </div>
     </AppLayout>
