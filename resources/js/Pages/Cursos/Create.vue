@@ -9,6 +9,7 @@ import Formvue from './partials/CreateForm.vue'
     <Head title="Edición de Cursos" />
     <AppLayout>
         <div class="container">
+            <h1 class="text-lg">Creación de Cursos</h1>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
                 <Formvue></Formvue>
             </div>
