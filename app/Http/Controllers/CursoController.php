@@ -51,4 +51,17 @@ class CursoController extends Controller
             'curso' => $this->service->curso($curso->id)
         ]);
     }
+
+    public function update(Curso $curso, RequestData $request)
+    {
+        $request->validate([
+            'nombre' => 'required',
+            'horario' => 'required',
+            'inicio' => 'required',
+            'final' => 'required'
+        ]);
+
+        $this->service->CursoUpdate($curso->id, $request);
+        return to_route('cursos.index');
+    }
 }

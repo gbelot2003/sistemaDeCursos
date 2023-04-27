@@ -110,6 +110,36 @@ class CursosTest extends TestCase
     }
 
     /** @test */
+    public function update_student_information()
+    {
+        $curso = Curso::factory()->create();
+        $cursoUpdate = Curso::factory()->make();
+        $changes = [
+            'nombre' => $cursoUpdate->nombre,
+            'horario' => $cursoUpdate->horario,
+            'inicio' => $cursoUpdate->inicio,
+            'final' => $cursoUpdate->final,
+        ];
+
+        $request = $this->actingAs($this->user)->post(
+            "cursos/{$curso->id}",
+            $changes,
+            ['Accept' => 'application/json']
+        );
+
+        $changedName = Curso::findOrFail($curso->id);
+
+        $request
+            ->assertStatus(302)
+            ->assertRedirect();
+
+        $this->assertEquals($changedName->nombre, $cursoUpdate->nombre);
+        $this->assertEquals($changedName->horario, $cursoUpdate->horario);
+        $this->assertEquals($changedName->inicio, $cursoUpdate->inicio);
+        $this->assertEquals($changedName->final, $cursoUpdate->final);
+    }
+
+    /** @test */
     public function a_guest_user_can_not_see_cursos_index(): void
     {
         $response = $this->get('/cursos');

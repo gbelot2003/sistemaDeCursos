@@ -40,6 +40,7 @@ Route::middleware([
     Route::get('/cursos/create', [CursoController::class, 'create'])->name('cursos.create');
     Route::post('/cursos', [CursoController::class, 'store'])->name('cursos.store');
     Route::get('/cursos/{curso}/edit', [CursoController::class, 'edit'])->name('cursos.edit');
+    Route::post('cursos/{curso}', [CursoController::class, 'update'])->name('cursos.update');
 
     // Estudiantes Routes
     Route::get('/estudiantes', [StudentController::class, 'index'])->name('students.index');
