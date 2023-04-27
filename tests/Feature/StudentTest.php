@@ -15,7 +15,7 @@ class StudentTest extends TestCase
 
     protected $userTested = [];
 
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -29,7 +29,7 @@ class StudentTest extends TestCase
             'apellido' => 'mejia Soriano',
             'edad' => 14,
             'email' => 'mejia@test.com'
-        ]);
+        ], $override);
     }
 
     /** @test */
@@ -90,15 +90,95 @@ class StudentTest extends TestCase
     }
 
     /** @test */
-    public function can_store_new_students() : void
+    public function can_store_new_students(): void
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post("estudiantes", $this->validFields(),
-        ['Accept' => 'application/json'])
-        ->assertSessionHasNoErrors()
-        ->assertStatus(302)->assertRedirect();
+        $postUser = $this->validFields(['cursos' => [1, 2]]);
+
+        $this->actingAs($user)->post(
+            "estudiantes",
+            $postUser,
+            ['Accept' => 'application/json']
+        )
+            ->assertSessionHasNoErrors()
+            ->assertStatus(302)->assertRedirect();
 
         $this->assertDatabaseHas('students', $this->validFields());
+    }
+
+    /** @test */
+    public function endpoint_fail_on_name_validation_error()
+    {
+        $user = User::factory()->create();
+
+        $errorRequest = $this->validFields(['nombre' => '']);
+
+        $this->actingAs($user)->post(
+            "estudiantes",
+            $errorRequest,
+            ['Accept' => 'application/json']
+        )
+            ->assertStatus(422);
+    }
+
+    /** @test */
+    public function endpoint_fail_on_lastname_validation_error()
+    {
+        $user = User::factory()->create();
+
+        $errorRequest = $this->validFields(['apellido' => '']);
+
+        $this->actingAs($user)->post(
+            "estudiantes",
+            $errorRequest,
+            ['Accept' => 'application/json']
+        )
+            ->assertStatus(422);
+    }
+
+    /** @test */
+    public function endpoint_fail_on_age_validation_error()
+    {
+        $user = User::factory()->create();
+
+        $errorRequest = $this->validFields(['edad' => '']);
+
+        $this->actingAs($user)->post(
+            "estudiantes",
+            $errorRequest,
+            ['Accept' => 'application/json']
+        )
+            ->assertStatus(422);
+    }
+
+    /** @test */
+    public function endpoint_fail_on_email_validation_error()
+    {
+        $user = User::factory()->create();
+
+        $errorRequest = $this->validFields(['email' => '']);
+
+        $this->actingAs($user)->post(
+            "estudiantes",
+            $errorRequest,
+            ['Accept' => 'application/json']
+        )
+            ->assertStatus(422);
+    }
+
+    /** @test */
+    public function endpoint_fail_on_email_not_email_validation_error()
+    {
+        $user = User::factory()->create();
+
+        $errorRequest = $this->validFields(['email' => 'cualquiercosa']);
+
+        $this->actingAs($user)->post(
+            "estudiantes",
+            $errorRequest,
+            ['Accept' => 'application/json']
+        )
+            ->assertStatus(422);
     }
 }

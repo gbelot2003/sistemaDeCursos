@@ -36,7 +36,15 @@ class StudentController extends Controller
 
     public function store(RequestData $request)
     {
+        $request->validate([
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'edad' => 'required',
+            'email' => 'required|email'
+        ]);
+
         $student = Student::create($request->all());
+
         return to_route('students.index');
     }
 
