@@ -40,6 +40,7 @@ class CursoController extends Controller
             'final' => 'required'
         ]);
 
+        //dd($request->all());
         $this->service->CursoCreate($request);
 
         return to_route('cursos.index');
