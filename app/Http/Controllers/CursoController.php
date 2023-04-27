@@ -31,6 +31,20 @@ class CursoController extends Controller
         return Inertia::render('Cursos/Create');
     }
 
+    public function store(RequestData $request)
+    {
+        $request->validate([
+            'nombre' => 'required',
+            'horario' => 'required',
+            'inicio' => 'required',
+            'final' => 'required'
+        ]);
+
+        $this->service->CursoCreate($request);
+
+        return to_route('cursos.index');
+    }
+
     public function edit(Curso $curso)
     {
         return Inertia::render('Cursos/Edit', [
