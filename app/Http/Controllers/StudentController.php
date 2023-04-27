@@ -69,4 +69,10 @@ class StudentController extends Controller
 
         return to_route('students.index');
     }
+
+    public function delete($id)
+    {
+        $this->service->studentDelete($id);
+        return to_route('students.index');
+    }
 }

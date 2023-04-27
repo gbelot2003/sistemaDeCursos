@@ -64,4 +64,9 @@ class StudentService
         return $student;
     }
 
+    public function studentDelete($id)
+    {
+        Student::where('id', '=', $id)->delete();
+    }
+
 }
