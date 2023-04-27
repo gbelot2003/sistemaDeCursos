@@ -31,7 +31,7 @@ class StudentService
 
     public function student($request)
     {
-        $student = $this->studentModel::findOrFail($request);
+        $student = $this->studentModel::where('id', '=', $request)->with('cursos')->first();
         return $student;
     }
 

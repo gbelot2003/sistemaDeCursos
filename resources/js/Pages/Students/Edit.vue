@@ -6,6 +6,9 @@ import Formvue from './partials/EditForm.vue'
 const props = defineProps({
     student: {
         type: Object
+    },
+    cursos: {
+        type: Array
     }
 });
 
@@ -16,7 +19,7 @@ const props = defineProps({
     <AppLayout>
         <div class="container">
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <Formvue :student="student"></Formvue>
+                <Formvue :student="student" :cursos="cursos" ></Formvue>
             </div>
         </div>
     </AppLayout>

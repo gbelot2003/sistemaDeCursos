@@ -20,6 +20,9 @@
     },
     "dependencies": {
         "@mdi/font": "^7.2.96",
-        "@vuepic/vue-datepicker": "^4.5.1"
+        "@vueform/multiselect": "^2.6.2",
+        "@vuepic/vue-datepicker": "^4.5.1",
+        "v-select2-component": "^0.4.7",
+        "vue3-select2-component": "^0.1.7"
     }
 }

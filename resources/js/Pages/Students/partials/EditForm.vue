@@ -1,13 +1,16 @@
 <script setup>
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
-
+import Multiselect from '@vueform/multiselect'
 import { useForm } from "@inertiajs/vue3";
 import { ref } from "vue";
 
 const props = defineProps({
     student: {
         type: Object
+    },
+    cursos: {
+        type: Array
     }
 })
 
@@ -15,8 +18,13 @@ let form = useForm({
     nombre: props.student.nombre,
     apellido: props.student.apellido,
     edad: props.student.edad,
-    email: props.student.email
+    email: props.student.email,
+    cursos: props.student.cursos
 })
+
+let onSelected = () => {
+    console.log(option)
+}
 
 </script>
 
@@ -65,6 +73,15 @@ let form = useForm({
                             <div class="text-red-600" v-if="form.errors.email">{{ form.errors.email }}</div>
                         </div>
 
+                        <div class="col-span-6 sm:col-span-4">
+                            <label for="nombre">Selecciones</label>
+
+                            <Multiselect v-model="form.cursos" :options="cursos" :close-on-select="false"
+                                @select="cursos.map(curso => {curso.nombre})" label="nombre"
+                                mode="tags" object="true" track-by="id" placeholder="Listado de Cursos" :searchable="true" />
+
+                                <p> <p>{{ form.cursos }}</p></p>
+                        </div>
                     </div>
                 </div>
                 <div
@@ -78,3 +95,5 @@ let form = useForm({
         </div>
     </div>
 </template>
+
+<style src="@vueform/multiselect/themes/default.css"></style>

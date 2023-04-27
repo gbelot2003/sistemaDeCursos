@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use App\Models\Curso;
 use App\Models\Student;
 use App\Http\Services\StudentService;
 use Illuminate\Support\Facades\Request;
@@ -28,13 +29,16 @@ class StudentController extends Controller
 
     public function create()
     {
-        return Inertia::render('Students/Create');
+        return Inertia::render('Students/Create', [
+            'cursos' => Curso::all()->pluck('nombre', 'id')
+        ]);
     }
 
     public function edit(Student $student)
     {
         return Inertia::render('Students/Edit', [
-            'student' => $this->service->student($student->id)
+            'student' => $this->service->student($student->id),
+            'cursos' => Curso::all()->pluck('nombre', 'id')
         ]);
     }
 
