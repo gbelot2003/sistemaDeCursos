@@ -34,6 +34,12 @@ class StudentController extends Controller
         ]);
     }
 
+    public function store(RequestData $request)
+    {
+        $student = Student::create($request->all());
+        return to_route('students.index');
+    }
+
     public function edit(Student $student)
     {
         return Inertia::render('Students/Edit', [
