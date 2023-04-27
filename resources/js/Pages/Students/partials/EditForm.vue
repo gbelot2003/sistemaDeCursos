@@ -79,8 +79,6 @@ let onSelected = () => {
                             <Multiselect v-model="form.cursos" :options="cursos" :close-on-select="false"
                                 @select="cursos.map(curso => {curso.nombre})" label="nombre"
                                 mode="tags" object="true" track-by="id" placeholder="Listado de Cursos" :searchable="true" />
-
-                                <p> <p>{{ form.cursos }}</p></p>
                         </div>
                     </div>
                 </div>
