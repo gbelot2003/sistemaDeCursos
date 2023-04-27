@@ -31,7 +31,9 @@ class StudentService
 
     public function student($request)
     {
-        $student = $this->studentModel::where('id', '=', $request)->with('cursos')->first();
+        $student = $this->studentModel::where('id', '=', $request)->with('cursos', function ($q) {
+            $q->select('cursos.id as value', 'cursos.nombre as id', 'cursos.nombre');
+        })->first();
         return $student;
     }
 
@@ -52,8 +54,8 @@ class StudentService
     {
         $student = $this->studentModel::findOrFail($id);
         $student->update($request->all());
-
-        if ($request->has('cursos')) {
+        //dd($request->all());
+        if ($request->has('cursos') && !empty($request->has('cursos'))) {
             $getcursos = $request->input('cursos');
             $cursosId = array_column($getcursos, 'value');
             $student->cursos()->sync($cursosId);

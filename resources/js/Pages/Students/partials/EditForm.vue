@@ -81,7 +81,7 @@ let submit = () => {
                             <label for="nombre">Selecciones</label>
 
                             <Multiselect v-model="form.cursos" :options="cursos" :close-on-select="false"
-                                @select="cursos.map(curso => {curso.nombre})" label="nombre"
+                                @select="cursos.map(curso => {curso})" label="nombre"
                                 mode="tags" object="true" track-by="id" placeholder="Listado de Cursos" :searchable="true" />
                         </div>
                     </div>
@@ -92,6 +92,9 @@ let submit = () => {
                         class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                         Actualizar
                     </button>
+                </div>
+                <div class="mt-20">
+                    {{ form.cursos }}
                 </div>
             </form>
         </div>
