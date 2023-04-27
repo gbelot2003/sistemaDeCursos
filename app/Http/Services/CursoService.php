@@ -45,4 +45,10 @@ class CursoService
         $curso->update($request->all());
         return $curso;
     }
+
+    public function cursoDelete($id)
+    {
+        Curso::where('id', '=', $id)->delete();
+    }
+
 }

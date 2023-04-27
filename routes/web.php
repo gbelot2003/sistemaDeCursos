@@ -41,6 +41,8 @@ Route::middleware([
     Route::post('/cursos', [CursoController::class, 'store'])->name('cursos.store');
     Route::get('/cursos/{curso}/edit', [CursoController::class, 'edit'])->name('cursos.edit');
     Route::post('cursos/{curso}', [CursoController::class, 'update'])->name('cursos.update');
+    Route::post('/cursos-destroy/{id}', [CursoController::class, 'delete'])->name('cursos.delete');
+
 
     // Estudiantes Routes
     Route::get('/estudiantes', [StudentController::class, 'index'])->name('students.index');

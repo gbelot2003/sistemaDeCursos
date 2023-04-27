@@ -65,4 +65,10 @@ class CursoController extends Controller
         $this->service->CursoUpdate($curso->id, $request);
         return to_route('cursos.index');
     }
+
+    public function delete($id)
+    {
+        $this->service->cursoDelete($id);
+        return to_route('cursos.index');
+    }
 }

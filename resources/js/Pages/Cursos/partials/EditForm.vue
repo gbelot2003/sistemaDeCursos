@@ -36,6 +36,12 @@ let submit = () => {
     form.post('/cursos/' + props.curso.id);
 }
 
+let destroy = ()  => {
+    if(confirm("Se dispone a eliminar este registro permanenetemente") == true) {
+        form.post(`/cursos-destroy/${props.curso.id}`)
+    }
+}
+
 </script>
 
 <template>
@@ -83,6 +89,11 @@ let submit = () => {
                 </div>
                 <div
                     class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
+                    <button type="button" @click="destroy"
+                        class="inline-flex items-center px-4 py-2 mr-10 bg-red-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                        Borrar
+                    </button>
+
                     <button type="submit"
                         class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                         Actualizar
