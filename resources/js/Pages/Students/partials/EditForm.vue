@@ -26,6 +26,10 @@ let onSelected = () => {
     console.log(option)
 }
 
+let submit = () => {
+    form.post(`/estudiantes/${props.student.id}` , form);
+}
+
 </script>
 
 <template>

@@ -175,4 +175,33 @@ class StudentTest extends TestCase
         )
             ->assertStatus(422);
     }
+
+    /** @test */
+    public function update_student_information()
+    {
+        $student = Student::factory()->create();
+
+        $changes = [
+            'nombre' => 'nuevo nombre',
+            'apellido' => 'nuevo apellido',
+            'edad' => 55,
+            'email' => 'nuevo@apellido.com'
+        ];
+
+        $request = $this->actingAs($this->user)->post(
+            "estudiantes/{$student->id}", $changes,
+            ['Accept' => 'application/json']
+        );
+
+        $changedName = Student::findOrFail($student->id);
+
+        $request
+        ->assertStatus(302)
+        ->assertRedirect();
+
+        $this->assertEquals($changedName->nombre, 'nuevo nombre');
+        $this->assertEquals($changedName->apellido, 'nuevo apellido');
+        $this->assertEquals($changedName->edad, 55);
+        $this->assertEquals($changedName->email, 'nuevo@apellido.com');
+    }
 }

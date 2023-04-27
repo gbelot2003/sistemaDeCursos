@@ -56,5 +56,17 @@ class StudentController extends Controller
         ]);
     }
 
+    public function update(Student $student, RequestData $request)
+    {
+        $request->validate([
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'edad' => 'required',
+            'email' => ['required', 'email', 'unique:users,email,' . $student->id],
+        ]);
 
+        $this->service->studentUpdate($student->id, $request);
+
+        return to_route('students.index');
+    }
 }

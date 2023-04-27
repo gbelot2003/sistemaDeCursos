@@ -40,7 +40,9 @@ class StudentService
         $student = $this->studentModel::create($request->all());
 
         if ($request->has('cursos')) {
-            $student->cursos()->sync($request->only('cursos'));
+            $getcursos = $request->input('cursos');
+            $cursosId = array_column($getcursos, 'value');
+            $student->cursos()->sync($cursosId);
         }
 
         return $student;
@@ -50,6 +52,13 @@ class StudentService
     {
         $student = $this->studentModel::findOrFail($id);
         $student->update($request->all());
+
+        if ($request->has('cursos')) {
+            $getcursos = $request->input('cursos');
+            $cursosId = array_column($getcursos, 'value');
+            $student->cursos()->sync($cursosId);
+        }
+
         return $student;
     }
 

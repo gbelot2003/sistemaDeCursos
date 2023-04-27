@@ -45,5 +45,6 @@ Route::middleware([
     Route::get('/estudiantes/create', [StudentController::class, 'create'])->name('students.create');
     Route::post('/estudiantes', [StudentController::class, 'store'])->name('students.store');
     Route::get('/estudiantes/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
+    Route::post('/estudiantes/{student}', [StudentController::class, 'update'])->name('students.update');
 
 });

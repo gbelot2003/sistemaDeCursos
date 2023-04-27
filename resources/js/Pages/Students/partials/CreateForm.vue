@@ -14,11 +14,15 @@ const props = defineProps({
 
 let form = useForm({
     nombre: '',
-    horario: '',
-    inicio: '',
-    final: '',
+    apellido: '',
+    edad: '',
+    email: '',
     cursos: []
 })
+
+let submit = () => {
+    form.post("/estudiantes", form);
+}
 
 </script>
 
@@ -44,27 +48,39 @@ let form = useForm({
                         </div>
 
                         <div class="col-span-6 sm:col-span-4">
-                            <label for="nombre">Horario</label>
-                            <VueDatePicker v-model="form.horario" time-picker></VueDatePicker>
+                            <label for="apellido">apellido</label>
+                            <input v-model="form.apellido" id="apellido"
+                                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
+                                :class="{ 'border-red-500': form.errors.apellido }" type="text">
+                            <div class="text-red-600" v-if="form.errors.apellido">{{ form.errors.apellido }}</div>
                         </div>
 
                         <div class="col-span-6 sm:col-span-4">
-                            <label for="nombre">Fecha de Inicio</label>
-                            <VueDatePicker v-model="form.inicio"></VueDatePicker>
+                            <label for="edad">edad</label>
+                            <input v-model="form.edad" id="edad"
+                                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
+                                :class="{ 'border-red-500': form.errors.edad }" type="number">
+                            <div class="text-red-600" v-if="form.errors.edad">{{ form.errors.edad }}</div>
                         </div>
 
                         <div class="col-span-6 sm:col-span-4">
-                            <label for="nombre">Fecha de Final</label>
-                            <VueDatePicker v-model="form.final" :min-date="form.inicio"></VueDatePicker>
+                            <label for="email">email</label>
+                            <input v-model="form.email" id="email"
+                                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
+                                :class="{ 'border-red-500': form.errors.email }" type="email">
+                            <div class="text-red-600" v-if="form.errors.email">{{ form.errors.email }}</div>
                         </div>
 
                         <div class="col-span-6 sm:col-span-4">
                             <label for="nombre">Selecciones</label>
-                            <p>{{ form.cursos }}</p>
-                            <Multiselect v-model="form.cursos" :options="cursos" :close-on-select="false"
-                                mode="tags" track-by="id" placeholder="Listado de Cursos" :searchable="true" />
-                        </div>
 
+                            <Multiselect v-model="form.cursos" :options="cursos" :close-on-select="false"
+                                @select="cursos.map(curso => {curso.nombre})" label="nombre"
+                                mode="tags" object="true" track-by="id" placeholder="Listado de Cursos" :searchable="true" />
+                        </div>
+                    </div>
+                    <div class="mt-20">
+                        {{ form }}
                     </div>
                 </div>
                 <div
