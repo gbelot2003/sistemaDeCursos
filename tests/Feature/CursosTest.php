@@ -54,6 +54,62 @@ class CursosTest extends TestCase
     }
 
     /** @test */
+    public function endpoint_fail_on_nombre_validation_error()
+    {
+
+        $errorRequest = $this->validFields(['nombre' => '']);
+
+        $this->actingAs($this->user)->post(
+            "cursos",
+            $errorRequest,
+            ['Accept' => 'application/json']
+        )
+            ->assertStatus(422);
+    }
+
+    /** @test */
+    public function endpoint_fail_on_horario_validation_error()
+    {
+
+        $errorRequest = $this->validFields(['horario' => '']);
+
+        $this->actingAs($this->user)->post(
+            "cursos",
+            $errorRequest,
+            ['Accept' => 'application/json']
+        )
+            ->assertStatus(422);
+    }
+
+    /** @test */
+    public function endpoint_fail_on_inicio_validation_error()
+    {
+
+        $errorRequest = $this->validFields(['inicio' => '']);
+
+        $this->actingAs($this->user)->post(
+            "cursos",
+            $errorRequest,
+            ['Accept' => 'application/json']
+        )
+            ->assertStatus(422);
+    }
+
+    /** @test */
+    public function endpoint_fail_on_final_validation_error()
+    {
+
+        $errorRequest = $this->validFields(['final' => '']);
+
+        $this->actingAs($this->user)->post(
+            "cursos",
+            $errorRequest,
+            ['Accept' => 'application/json']
+        )
+            ->assertStatus(422);
+    }
+
+    /** @test */
     public function a_guest_user_can_not_see_cursos_index(): void
     {
         $response = $this->get('/cursos');
