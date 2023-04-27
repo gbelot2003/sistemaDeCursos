@@ -17,7 +17,7 @@ class StudentService
     public function students($request)
     {
         $student = $this->studentModel::query()
-            ->when($request, function ($query, $search){
+            ->when($request, function ($query, $search) {
                 $query->where('nombre', 'LIKE', "%{$search}%");
                 $query->orWhere('apellido', 'LIKE', "%{$search}%");
                 $query->orWhere('email', 'LIKE', "%{$search}%");
@@ -38,6 +38,11 @@ class StudentService
     public function studentCreate(Request $request)
     {
         $student = $this->studentModel::create($request->all());
+
+        if ($request->has('cursos')) {
+            $student->cursos()->sync($request->only('cursos'));
+        }
+
         return $student;
     }
 

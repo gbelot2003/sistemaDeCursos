@@ -14,12 +14,15 @@ class StudentTest extends TestCase
     use WithFaker, RefreshDatabase;
 
     protected $userTested = [];
+    protected $user;
 
     public function setUp(): void
     {
         parent::setUp();
 
         $this->userTested = $this->validFields();
+        $this->user = User::factory()->create();
+
     }
 
     protected function validFields($override = [])
@@ -43,9 +46,8 @@ class StudentTest extends TestCase
     /** @test */
     function a_user_registered_can_get_students_index(): void
     {
-        $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->get('/estudiantes');
+        $response = $this->actingAs($this->user)->get('/estudiantes');
 
         $response->assertStatus(200);
     }
@@ -63,10 +65,9 @@ class StudentTest extends TestCase
     /** @test */
     function a_user_registered_can_get_student_edit(): void
     {
-        $user = User::factory()->create();
         $student = Student::factory()->create();
 
-        $response = $this->actingAs($user)->get("estudiantes/{$student->id}/edit");
+        $response = $this->actingAs($this->user)->get("estudiantes/{$student->id}/edit");
 
         $response->assertStatus(200);
     }
@@ -82,9 +83,8 @@ class StudentTest extends TestCase
     /** @test */
     function a_user_registered_can_get_student_create(): void
     {
-        $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->get("estudiantes/create");
+        $response = $this->actingAs($this->user)->get("estudiantes/create");
 
         $response->assertStatus(200);
     }
@@ -92,11 +92,10 @@ class StudentTest extends TestCase
     /** @test */
     public function can_store_new_students(): void
     {
-        $user = User::factory()->create();
 
         $postUser = $this->validFields(['cursos' => [1, 2]]);
 
-        $this->actingAs($user)->post(
+        $this->actingAs($this->user)->post(
             "estudiantes",
             $postUser,
             ['Accept' => 'application/json']
@@ -110,11 +109,10 @@ class StudentTest extends TestCase
     /** @test */
     public function endpoint_fail_on_name_validation_error()
     {
-        $user = User::factory()->create();
 
         $errorRequest = $this->validFields(['nombre' => '']);
 
-        $this->actingAs($user)->post(
+        $this->actingAs($this->user)->post(
             "estudiantes",
             $errorRequest,
             ['Accept' => 'application/json']
@@ -125,11 +123,10 @@ class StudentTest extends TestCase
     /** @test */
     public function endpoint_fail_on_lastname_validation_error()
     {
-        $user = User::factory()->create();
 
         $errorRequest = $this->validFields(['apellido' => '']);
 
-        $this->actingAs($user)->post(
+        $this->actingAs($this->user)->post(
             "estudiantes",
             $errorRequest,
             ['Accept' => 'application/json']
@@ -140,11 +137,10 @@ class StudentTest extends TestCase
     /** @test */
     public function endpoint_fail_on_age_validation_error()
     {
-        $user = User::factory()->create();
 
         $errorRequest = $this->validFields(['edad' => '']);
 
-        $this->actingAs($user)->post(
+        $this->actingAs($this->user)->post(
             "estudiantes",
             $errorRequest,
             ['Accept' => 'application/json']
@@ -155,11 +151,10 @@ class StudentTest extends TestCase
     /** @test */
     public function endpoint_fail_on_email_validation_error()
     {
-        $user = User::factory()->create();
 
         $errorRequest = $this->validFields(['email' => '']);
 
-        $this->actingAs($user)->post(
+        $this->actingAs($this->user)->post(
             "estudiantes",
             $errorRequest,
             ['Accept' => 'application/json']
@@ -170,11 +165,10 @@ class StudentTest extends TestCase
     /** @test */
     public function endpoint_fail_on_email_not_email_validation_error()
     {
-        $user = User::factory()->create();
 
         $errorRequest = $this->validFields(['email' => 'cualquiercosa']);
 
-        $this->actingAs($user)->post(
+        $this->actingAs($this->user)->post(
             "estudiantes",
             $errorRequest,
             ['Accept' => 'application/json']

@@ -43,7 +43,7 @@ class StudentController extends Controller
             'email' => 'required|email'
         ]);
 
-        $student = Student::create($request->all());
+        $this->service->studentCreate($request);
 
         return to_route('students.index');
     }
