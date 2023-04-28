@@ -27,6 +27,9 @@ watch(search, value => {
         </template>
 
         <div class="container">
+
+            <h1 class="text-lg mb-10">Administración de Cursos</h1>
+
             <div class="md:flex md:justify-between mb-2">
                 <Link href="cursos/create" class="leading-tight py-3 px-2 text-white rounded-full text-center bg-blue-950">Nuevo <span class="mdi mdi-plus-circle-outline"></span></Link>
                 <input type="text" class="rounded w-full md:w-1/2" v-model="search" placeholder="Buscar...." />
@@ -56,9 +59,13 @@ watch(search, value => {
                             <td class="border-grey-light md:border hover:bg-gray-100 p-3">{{ cursos.final }}</td>
                             <td class="border-grey-light md:border hover:bg-gray-100 p-3">5</td>
                             <td class="border-grey-light md:border hover:bg-gray-100 p-3">
-                                <Link :href="`cursos/${cursos.id}/edit`"
-                                    class="bg-blue-800 hover:bg-blue-400 px-3 py-2 rounded-lg text-white hover:underline">
-                                Edit
+                            <Link :href="`cursos/${cursos.id}/edit`"
+                                class="bg-blue-700 hover:bg-blue-400 px-3 py-2 mr-2 rounded-lg text-white hover:underline">
+                            Edit
+                            </Link>
+                                <Link :href="`cursos/${cursos.id}`"
+                                    class="bg-red-800 hover:bg-blue-400 px-3 py-2 rounded-lg text-white hover:underline">
+                                Show
                                 </Link>
                             </td>
                         </tr>

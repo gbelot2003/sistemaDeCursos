@@ -45,6 +45,13 @@ class CursoController extends Controller
         return to_route('cursos.index');
     }
 
+    public function show($id)
+    {
+        return Inertia::render('Cursos/Show', [
+            'curso' => $this->service->CursoShow($id),
+        ]);
+    }
+
     public function edit(Curso $curso)
     {
         return Inertia::render('Cursos/Edit', [
@@ -62,6 +69,12 @@ class CursoController extends Controller
         ]);
 
         $this->service->CursoUpdate($curso->id, $request);
+        return to_route('cursos.index');
+    }
+
+    public function delete($id)
+    {
+        $this->service->cursoDelete($id);
         return to_route('cursos.index');
     }
 }

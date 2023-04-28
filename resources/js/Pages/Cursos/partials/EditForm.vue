@@ -1,9 +1,7 @@
 <script setup>
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
-
 import { useForm } from "@inertiajs/vue3";
-import { ref } from "vue";
 
 const props = defineProps({
     curso: {
@@ -17,6 +15,32 @@ let form = useForm({
     inicio: props.curso.inicio,
     final: props.curso.final
 })
+
+let format = (date) => {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    return `${year}/${month}/${day}`;
+}
+
+let format2 = (date) => {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    return `${year}/${month}/${day}`;
+}
+
+let submit = () => {
+    form.post('/cursos/' + props.curso.id);
+}
+
+let destroy = ()  => {
+    if(confirm("Se dispone a eliminar este registro permanenetemente") == true) {
+        form.post(`/cursos-destroy/${props.curso.id}`)
+    }
+}
 
 </script>
 
@@ -42,24 +66,34 @@ let form = useForm({
                         </div>
 
                         <div class="col-span-6 sm:col-span-4">
-                            <label for="nombre">Horario</label>
-                            <VueDatePicker v-model="form.horario" time-picker></VueDatePicker>
+                            <label for="horario">Horario</label>
+                            <input v-model="form.horario" id="horario"
+                                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
+                                :class="{ 'border-red-500': form.errors.horario }" type="text">
+                            <div class="text-red-600" v-if="form.errors.horario" :format="format3">{{ form.errors.horario }}
+                            </div>
                         </div>
 
                         <div class="col-span-6 sm:col-span-4">
-                            <label for="nombre">Fecha de Inicio</label>
-                            <VueDatePicker v-model="form.inicio"></VueDatePicker>
+                            <label for="inicio">Fecha de Inicio</label>
+                            <VueDatePicker v-model="form.inicio" :format="format"></VueDatePicker>
+                            <div class="text-red-600" v-if="form.errors.horario">{{ form.errors.inicio }}</div>
                         </div>
 
                         <div class="col-span-6 sm:col-span-4">
-                            <label for="nombre">Fecha de Final</label>
-                            <VueDatePicker v-model="form.final" :min-date="form.inicio"></VueDatePicker>
+                            <label for="final">Fecha de Final</label>
+                            <VueDatePicker v-model="form.final" :format="format2" :min-date="form.inicio"></VueDatePicker>
+                            <div class="text-red-600" v-if="form.errors.horario">{{ form.errors.final }}</div>
                         </div>
-
                     </div>
                 </div>
                 <div
                     class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
+                    <button type="button" @click="destroy"
+                        class="inline-flex items-center px-4 py-2 mr-10 bg-red-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                        Borrar
+                    </button>
+
                     <button type="submit"
                         class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                         Actualizar

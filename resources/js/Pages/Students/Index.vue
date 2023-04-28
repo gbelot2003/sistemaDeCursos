@@ -27,6 +27,7 @@ watch(search, value => {
         </template>
 
         <div class="container">
+            <h1 class="text-lg mb-10">Administración de estudiantes</h1>
             <div class="md:flex md:justify-between mb-2">
                 <Link href="estudiantes/create" class="leading-tight py-3 px-2 text-white rounded-full text-center bg-blue-950">Nuevo <span class="mdi mdi-plus-circle-outline"></span></Link>
                 <input type="text" class="rounded w-full md:w-1/2" v-model="search" placeholder="Buscar...." />
