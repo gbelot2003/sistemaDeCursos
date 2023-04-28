@@ -54,9 +54,11 @@ docker run --rm \
 
 ### URL para hacer login
 - http://localhost/login
+```
 - Usuario para ingresar a dashboard
   user: gbelot2003@hotmail.com
   pass: password
+```
 
 ### Información de conexión a base de datos
 ```
