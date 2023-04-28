@@ -61,6 +61,9 @@ DB_DATABASE=freedb_cursos
 DB_USERNAME=freedb_cursos_sail
 DB_PASSWORD=jaEj*G6q7CGDR3b
 
+- Usuario para ingresar a dashboard
+  user: gbelot2003@hotmail.com
+  pass: password
 ```
 
 
