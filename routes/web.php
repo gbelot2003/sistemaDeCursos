@@ -41,7 +41,6 @@ Route::middleware([
     Route::post('/cursos', [CursoController::class, 'store'])->name('cursos.store');
     Route::get('/cursos/{curso}/edit', [CursoController::class, 'edit'])->name('cursos.edit');
     Route::get('/cursos/{curso}', [CursoController::class, 'show'])->name('cursos.show');
-
     Route::post('cursos/{curso}', [CursoController::class, 'update'])->name('cursos.update');
     Route::post('/cursos-destroy/{id}', [CursoController::class, 'delete'])->name('cursos.delete');
 
@@ -54,5 +53,6 @@ Route::middleware([
     Route::get('/estudiantes/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
     Route::post('/estudiantes/{student}', [StudentController::class, 'update'])->name('students.update');
     Route::post('/estudiantes-destroy/{id}', [StudentController::class, 'delete'])->name('students.delete');
+    Route::get('/estudiantes/{student}', [StudentController::class, 'show']);
 
 });

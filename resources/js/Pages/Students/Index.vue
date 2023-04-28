@@ -29,7 +29,9 @@ watch(search, value => {
         <div class="container">
             <h1 class="text-lg mb-10">Administración de estudiantes</h1>
             <div class="md:flex md:justify-between mb-2">
-                <Link href="estudiantes/create" class="leading-tight py-3 px-2 text-white rounded-full text-center bg-blue-950">Nuevo <span class="mdi mdi-plus-circle-outline"></span></Link>
+                <Link href="estudiantes/create"
+                    class="leading-tight py-3 px-2 text-white rounded-full text-center bg-blue-950">Nuevo <span
+                    class="mdi mdi-plus-circle-outline"></span></Link>
                 <input type="text" class="rounded w-full md:w-1/2" v-model="search" placeholder="Buscar...." />
             </div>
 
@@ -56,8 +58,12 @@ watch(search, value => {
                             <td class="border-grey-light md:border hover:bg-gray-100 p-3">{{ students.email }}</td>
                             <td class="border-grey-light md:border hover:bg-gray-100 p-3">
                                 <Link :href="`estudiantes/${students.id}/edit`"
-                                    class="bg-blue-800 hover:bg-blue-400 px-3 py-2 rounded-lg text-white hover:underline">
+                                    class="bg-blue-700 hover:bg-blue-400 px-3 py-2 mr-2 rounded-lg text-white hover:underline">
                                 Edit
+                                </Link>
+                                <Link :href="`estudiantes/${students.id}`"
+                                    class="bg-red-700 hover:bg-blue-400 px-3 py-2 mr-2 rounded-lg text-white hover:underline">
+                                Show
                                 </Link>
                             </td>
                         </tr>
@@ -75,13 +81,16 @@ watch(search, value => {
     table {
         display: inline-table !important;
     }
+
     thead tr:not(:first-child) {
         display: none;
     }
 }
+
 td:not(:last-child) {
     border-bottom: 0;
 }
+
 th:not(:last-child) {
     border-bottom: 2px solid rgba(0, 0, 0, .1);
 }
