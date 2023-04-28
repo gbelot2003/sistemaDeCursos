@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\StudentController;
+use Carbon\Carbon;
 use Inertia\Inertia;
+use App\Models\Curso;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +34,18 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard', [
+            'query' => Curso::select('cursos.id', 'cursos.nombre', DB::raw('COUNT(curso_student.student_id) as total_estudiantes'))
+                ->join('curso_student', 'cursos.id', '=', 'curso_student.curso_id')
+                ->whereBetween(
+                    'created_at',
+                    [Carbon::now()->subMonth(6), Carbon::now()]
+                )
+                ->groupBy('cursos.id', 'cursos.nombre')
+                ->orderByDesc('total_estudiantes')
+                ->take(3)
+                ->get()
+        ]);
     })->name('dashboard');
 
     // Cursos Routes
