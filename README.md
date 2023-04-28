@@ -21,7 +21,7 @@ docker run --rm \
  ```
  - Utilizamos luego los siguientes comandos para comenzar
 ```
-    $> npm run build.
+    $> npm run build
     $> sail artisan key:generate
     $> sail up -d
 ```
