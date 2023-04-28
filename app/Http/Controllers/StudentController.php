@@ -27,6 +27,13 @@ class StudentController extends Controller
         ]);
     }
 
+    public function show(Student $student)
+    {
+        return Inertia::render('Students/Show', [
+            'student' => $this->service->studentShow($student->id)
+        ]);
+    }
+
     public function create()
     {
         return Inertia::render('Students/Create', [

@@ -29,6 +29,12 @@ class StudentService
         return $student;
     }
 
+    public function studentShow($request)
+    {
+        $curso = $this->studentModel::where('id', $request)->with('cursos')->first();
+        return $curso;
+    }
+
     public function student($request)
     {
         $student = $this->studentModel::where('id', '=', $request)->with('cursos', function ($q) {
