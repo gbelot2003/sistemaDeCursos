@@ -52,6 +52,12 @@ docker run --rm \
     $> php artisan serve
 ```
 
+### URL para hacer login
+- http://localhost/login
+- Usuario para ingresar a dashboard
+  user: gbelot2003@hotmail.com
+  pass: password
+
 ### Información de conexión a base de datos
 ```
 DB_CONNECTION=mysql
@@ -60,10 +66,6 @@ DB_PORT=3306
 DB_DATABASE=freedb_cursos
 DB_USERNAME=freedb_cursos_sail
 DB_PASSWORD=jaEj*G6q7CGDR3b
-
-- Usuario para ingresar a dashboard
-  user: gbelot2003@hotmail.com
-  pass: password
 ```
 
 
