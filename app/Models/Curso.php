@@ -12,20 +12,10 @@ class Curso extends Model
 
     protected $fillable = ['nombre', 'horario', 'inicio', 'final'];
 
-    // Relacion muchos a muchos con Cursos
+    // Relacion muchos a muchos con students
     public function students()
     {
         return $this->belongsToMany(Student::class);
-    }
-
-    public function setInicioFromAttribute($value)
-    {
-        $this->attributes['inicio'] = Carbon::parse($value);
-    }
-
-    public function setFinalFromAttribute($value)
-    {
-        $this->attributes['final'] = Carbon::parse($value);
     }
 
 }

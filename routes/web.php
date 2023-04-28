@@ -40,8 +40,11 @@ Route::middleware([
     Route::get('/cursos/create', [CursoController::class, 'create'])->name('cursos.create');
     Route::post('/cursos', [CursoController::class, 'store'])->name('cursos.store');
     Route::get('/cursos/{curso}/edit', [CursoController::class, 'edit'])->name('cursos.edit');
+    Route::get('/cursos/{curso}', [CursoController::class, 'show'])->name('cursos.show');
+
     Route::post('cursos/{curso}', [CursoController::class, 'update'])->name('cursos.update');
     Route::post('/cursos-destroy/{id}', [CursoController::class, 'delete'])->name('cursos.delete');
+
 
 
     // Estudiantes Routes

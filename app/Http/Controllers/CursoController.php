@@ -40,10 +40,16 @@ class CursoController extends Controller
             'final' => 'required'
         ]);
 
-        //dd($request->all());
         $this->service->CursoCreate($request);
 
         return to_route('cursos.index');
+    }
+
+    public function show($id)
+    {
+        return Inertia::render('Cursos/Show', [
+            'curso' => $this->service->CursoShow($id),
+        ]);
     }
 
     public function edit(Curso $curso)

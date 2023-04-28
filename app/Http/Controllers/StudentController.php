@@ -62,7 +62,7 @@ class StudentController extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'edad' => 'required|max:2',
-            'email' => ['required', 'email', 'unique:users,email,' . $student->id],
+            'email' => ['required', 'email', 'unique:students,email,' . $student->id],
         ]);
 
         $this->service->studentUpdate($student->id, $request);

@@ -59,9 +59,13 @@ watch(search, value => {
                             <td class="border-grey-light md:border hover:bg-gray-100 p-3">{{ cursos.final }}</td>
                             <td class="border-grey-light md:border hover:bg-gray-100 p-3">5</td>
                             <td class="border-grey-light md:border hover:bg-gray-100 p-3">
-                                <Link :href="`cursos/${cursos.id}/edit`"
-                                    class="bg-blue-800 hover:bg-blue-400 px-3 py-2 rounded-lg text-white hover:underline">
-                                Edit
+                            <Link :href="`cursos/${cursos.id}/edit`"
+                                class="bg-blue-700 hover:bg-blue-400 px-3 py-2 mr-2 rounded-lg text-white hover:underline">
+                            Edit
+                            </Link>
+                                <Link :href="`cursos/${cursos.id}`"
+                                    class="bg-red-800 hover:bg-blue-400 px-3 py-2 rounded-lg text-white hover:underline">
+                                Show
                                 </Link>
                             </td>
                         </tr>

@@ -33,6 +33,12 @@ class CursoService
         return $curso;
     }
 
+    public function CursoShow($request)
+    {
+        $curso = $this->cursoModel::where('id', $request)->with('students')->first();
+        return $curso;
+    }
+
     public function CursoCreate(Request $request)
     {
         $curso = $this->cursoModel::create($request->all());
