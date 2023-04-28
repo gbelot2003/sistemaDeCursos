@@ -43,7 +43,7 @@ let students = ref(props.curso.students)
                     </div>
                     <div>
                         <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
-                            <div class="md:grid md:grid-cols-3 md:gap-6 mb-7">
+                            <div v-if="students.length" class="md:grid md:grid-cols-3 md:gap-6 mb-7">
                                 <h2 class="text-2xl">Listado de estudiantes</h2>
                                 <div v-for="students in students" :key="students.id" class="col-span-6 sm:col-span-4 ">
                                     <div class="border bg-gray-200 p-5">
