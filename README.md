@@ -1,4 +1,4 @@
-# Sistema de Estudiantes
+# Sistema de Cursos
 
 ## Instalación sobre Docker Compose
 - Descargas el repositorio con git clone
