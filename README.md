@@ -18,6 +18,9 @@ docker run --rm \
 - ### Importante!!! copiar .env.examples a .env
  ```
     cp .env.example .env
+
+    // En el archivo .env.example se encuentran la información
+    // de la base de datos. pero se adjunta al final de este documento.
  ```
  - Utilizamos luego los siguientes comandos para comenzar
 ```
@@ -47,6 +50,17 @@ docker run --rm \
 
     // Por ultimo
     $> php artisan serve
+```
+
+### Información de conexión a base de datos
+```
+DB_CONNECTION=mysql
+DB_HOST=sql.freedb.tech
+DB_PORT=3306
+DB_DATABASE=freedb_cursos
+DB_USERNAME=freedb_cursos_sail
+DB_PASSWORD=jaEj*G6q7CGDR3b
+
 ```
 
 
