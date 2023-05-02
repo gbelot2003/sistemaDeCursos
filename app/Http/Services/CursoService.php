@@ -17,11 +17,13 @@ class CursoService
     public function Cursos($request)
     {
         $cursos = $this->cursoModel::query()
+            ->withCount('students')
             ->when($request, function ($query, $search){
                 $query->where('nombre', 'LIKE', "%{$search}%");
             })
             ->orderBy('id', 'DESC')
             ->paginate(10)
+
             ->withQueryString();
 
         return $cursos;
