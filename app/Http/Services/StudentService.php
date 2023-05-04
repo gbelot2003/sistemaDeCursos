@@ -22,7 +22,7 @@ class StudentService
                 $query->orWhere('apellido', 'LIKE', "%{$search}%");
                 $query->orWhere('email', 'LIKE', "%{$search}%");
             })
-            ->orderBy('id', 'DESC')
+            ->orderBy('apellido', 'ASC')
             ->paginate(10)
             ->withQueryString();
 
