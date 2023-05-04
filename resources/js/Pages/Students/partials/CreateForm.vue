@@ -28,7 +28,7 @@ let submit = () => {
 
 let check = computed(() => {
 
-    return form.nombre && form.apellido && form.edad && form.email && form.cursos.values
+    return form.nombre && form.apellido && form.edad && form.email && form.cursos.length
 })
 
 
