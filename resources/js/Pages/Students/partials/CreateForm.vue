@@ -4,7 +4,7 @@ import '@vuepic/vue-datepicker/dist/main.css'
 import Multiselect from '@vueform/multiselect'
 
 import { useForm } from "@inertiajs/vue3";
-import { ref } from "vue";
+import { ref, watch, computed } from 'vue';
 
 const props = defineProps({
     cursos: {
@@ -20,9 +20,17 @@ let form = useForm({
     cursos: []
 })
 
+console.log(form)
+
 let submit = () => {
     form.post("/estudiantes", form);
 }
+
+let check = computed(() => {
+
+    return form.nombre && form.apellido && form.edad && form.email && form.cursos.values
+})
+
 
 </script>
 
@@ -32,6 +40,7 @@ let submit = () => {
             <div class="px-4 sm:px-0">
                 <h3 class="text-lg font-medium text-gray-900">Datos De Estudiante</h3>
                 <p class="mt-1 text-sm text-gray-600">Creación de Nuevo Estudiante</p>
+
             </div>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">
@@ -75,15 +84,15 @@ let submit = () => {
                             <label for="nombre">Selecciones</label>
 
                             <Multiselect v-model="form.cursos" :options="cursos" :close-on-select="false"
-                                @select="cursos.map(curso => {curso.nombre})" label="nombre"
-                                mode="tags" object="true" track-by="id" placeholder="Listado de Cursos" :searchable="true" />
+                                @select="cursos.map(curso => { curso.nombre })" label="nombre" mode="tags" object="true"
+                                track-by="id" placeholder="Listado de Cursos" :searchable="true" />
                         </div>
                     </div>
 
                 </div>
                 <div
                     class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
-                    <button type="submit"
+                    <button type="submit" v-if="check"
                         class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                         Actualizar
                     </button>
@@ -93,4 +102,5 @@ let submit = () => {
     </div>
 </template>
 
-<style src="@vueform/multiselect/themes/default.css"></style>
+<style src="@vueform/multiselect/themes/default.css">
+</style>
